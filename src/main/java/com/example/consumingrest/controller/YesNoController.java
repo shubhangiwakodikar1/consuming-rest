@@ -14,8 +14,8 @@ public class YesNoController {
 
     @GetMapping("/api")
     @ResponseBody
-    public ResponseEntity<ResponseYesNo> getResponseYesNo(@RequestParam("force") String force) {
-        ResponseYesNo responseYesNo = yesNoService.getYesNo(Force.valueOf(force));
-        return ResponseEntity.ok(responseYesNo);
+    public ResponseEntity<String> getResponseYesNo(@RequestParam("force") String force) {
+        String response = yesNoService.getYesNo(Force.valueOf(force));
+        return ResponseEntity.ok(response);
     }
 }
