@@ -1,5 +1,6 @@
 package com.example.consumingrest.model;
 
-public class Force {
-    String force;
+public enum Force {
+    YES,
+    NO;
 }
