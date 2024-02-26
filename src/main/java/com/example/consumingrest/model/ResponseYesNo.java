@@ -1,4 +1,4 @@
-package com.example.consumingrest;
+package com.example.consumingrest.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)

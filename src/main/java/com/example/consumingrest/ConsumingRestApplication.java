@@ -1,12 +1,12 @@
 package com.example.consumingrest;
 
+import com.example.consumingrest.controller.YesNoController;
+import com.example.consumingrest.model.ResponseYesNo;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
-import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 public class ConsumingRestApplication {
@@ -16,15 +16,11 @@ public class ConsumingRestApplication {
 	}
 
 	@Bean
-	public RestTemplate restTemplate(RestTemplateBuilder builder) {
-		return builder.build();
-	}
-
-	@Bean
 	@Profile("!test")
-	public CommandLineRunner run(RestTemplate restTemplate) throws Exception {
+	public CommandLineRunner run() throws Exception {
 		return args -> {
-			ResponseYesNo responseYesNo = restTemplate.getForObject("https://yesno.wtf/api", ResponseYesNo.class);
+			YesNoController controller = new YesNoController();
+			ResponseYesNo responseYesNo = controller.getResponseYesNo("yes").getBody();
 			System.out.println(responseYesNo.toString());
 		};
 	}
